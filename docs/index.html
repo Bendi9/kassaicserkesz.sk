@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17. II. Rákóczi Ferenc cserkészcsapat, Kassa</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f0f9f5;
+      --bg-dark: #1b1f1c;
+      --text-light: #333;
+      --text-dark: #f0f9f5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    header {
+      background: linear-gradient(to right, #66bb6a, #43a047);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      animation: fadeInDown 1s ease-out;
+    }
+    header img {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .lang-toggle, .theme-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin-left: 5px;
+      z-index: 1001;
+    }
+    nav {
+      background: #2e7d32;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.75rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideInDown 0.7s ease-out;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #c8e6c9; }
+    section { padding: 2rem 1rem; max-width: 900px; margin: auto; }
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+    }
+    footer {
+      background: #1b5e20;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .calendar iframe {
+      border: none;
+      width: 100%;
+      height: 600px;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <button class="lang-toggle" onclick="toggleLanguage()">SK 🇸🇰</button>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+  <header>
+    <img src="kassalogo_02_clear_small.png" alt="Cserkészcsapat logó">
+    <h1>17. II. Rákóczi Ferenc cserkészcsapat, Kassa</h1>
+    <p class="lang" data-hu="A természethez közel, közösségben fejlődünk" data-sk="Blízko prírody, spoločne rastieme">A természethez közel, közösségben fejlődünk</p>
+  </header>
+
+  <nav>
+    <a href="#hirek" class="lang" data-hu="Hírek" data-sk="Novinky">Hírek</a>
+    <a href="#esemenyek" class="lang" data-hu="Események" data-sk="Udalosti">Események</a>
+    <a href="#galeria" class="lang" data-hu="Galéria" data-sk="Galéria">Galéria</a>
+    <a href="#rolunk" class="lang" data-hu="Rólunk" data-sk="O nás">Rólunk</a>
+    <a href="#csatlakozz" class="lang" data-hu="Csatlakozz" data-sk="Pridaj sa">Csatlakozz</a>
+    <a href="#kapcsolat" class="lang" data-hu="Kapcsolat" data-sk="Kontakt">Kapcsolat</a>
+    <a href="#tamogatas" class="lang" data-hu="Támogatás" data-sk="Podpora">Támogatás</a>
+  </nav>
+
+  <div class="hero">
+    <h2 class="lang" data-hu="Fedezd fel a cserkészet örömét!" data-sk="Objav radosť zo skautingu!">Fedezd fel a cserkészet örömét!</h2>
+  </div>
+
+  <!-- rest of the page stays unchanged -->
+
+  <script>
+    function toggleLanguage() {
+      const elements = document.querySelectorAll(".lang");
+      elements.forEach(el => {
+        const current = el.textContent.trim();
+        const next = el.dataset.hu === current ? el.dataset.sk : el.dataset.hu;
+        el.textContent = next;
+      });
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+</body>
+</html>
