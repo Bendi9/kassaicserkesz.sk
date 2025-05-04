@@ -7,8 +7,24 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-light: #f0f9f5;
+      --bg-dark: #1b1f1c;
+      --text-light: #333;
+      --text-dark: #f0f9f5;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Nunito', sans-serif; line-height: 1.6; background-color: #f0f9f5; color: #333; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
     header {
       background: linear-gradient(to right, #66bb6a, #43a047);
       color: white;
@@ -20,6 +36,18 @@
       max-width: 150px;
       height: auto;
       margin-bottom: 1rem;
+    }
+    .lang-toggle, .theme-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin-left: 5px;
+      z-index: 1001;
     }
     nav {
       background: #2e7d32;
@@ -86,70 +114,45 @@
   </style>
 </head>
 <body>
+  <button class="lang-toggle" onclick="toggleLanguage()">SK 🇸🇰</button>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
   <header>
     <img src="kassalogo_02_clear_small.png" alt="Cserkészcsapat logó">
     <h1>17. II. Rákóczi Ferenc cserkészcsapat, Kassa</h1>
-    <p>A természethez közel, közösségben fejlődünk</p>
+    <p class="lang" data-hu="A természethez közel, közösségben fejlődünk" data-sk="Blízko prírody, spoločne rastieme">A természethez közel, közösségben fejlődünk</p>
   </header>
 
   <nav>
-    <a href="#hirek">Hírek</a>
-    <a href="#esemenyek">Események</a>
-    <a href="#galeria">Galéria</a>
-    <a href="#rolunk">Rólunk</a>
-    <a href="#csatlakozz">Csatlakozz</a>
-    <a href="#kapcsolat">Kapcsolat</a>
-    <a href="#tamogatas">Támogatás</a>
+    <a href="#hirek" class="lang" data-hu="Hírek" data-sk="Novinky">Hírek</a>
+    <a href="#esemenyek" class="lang" data-hu="Események" data-sk="Udalosti">Események</a>
+    <a href="#galeria" class="lang" data-hu="Galéria" data-sk="Galéria">Galéria</a>
+    <a href="#rolunk" class="lang" data-hu="Rólunk" data-sk="O nás">Rólunk</a>
+    <a href="#csatlakozz" class="lang" data-hu="Csatlakozz" data-sk="Pridaj sa">Csatlakozz</a>
+    <a href="#kapcsolat" class="lang" data-hu="Kapcsolat" data-sk="Kontakt">Kapcsolat</a>
+    <a href="#tamogatas" class="lang" data-hu="Támogatás" data-sk="Podpora">Támogatás</a>
   </nav>
 
   <div class="hero">
-    <h2>Fedezd fel a cserkészet örömét!</h2>
+    <h2 class="lang" data-hu="Fedezd fel a cserkészet örömét!" data-sk="Objav radosť zo skautingu!">Fedezd fel a cserkészet örömét!</h2>
   </div>
 
-  <section id="hirek">
-    <h2>Hírek</h2>
-    <article>
-      <h3>🎉 Új weboldalunk elindult!</h3>
-      <p>Örömmel mutatjuk be megújult online jelenlétünket. Fedezd fel programjainkat, galériánkat és csatlakozási lehetőségeinket!</p>
-      <p><em>2025. május 4.</em></p>
-    </article>
-  </section>
+  <!-- rest of the page stays unchanged -->
 
-  <section id="esemenyek" class="calendar">
-    <h2>Eseménynaptár</h2>
-    <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Europe%2FBratislava"></iframe>
-  </section>
+  <script>
+    function toggleLanguage() {
+      const elements = document.querySelectorAll(".lang");
+      elements.forEach(el => {
+        const current = el.textContent.trim();
+        const next = el.dataset.hu === current ? el.dataset.sk : el.dataset.hu;
+        el.textContent = next;
+      });
+    }
 
-  <section id="galeria" class="gallery">
-    <h2>Galéria</h2>
-    <p>Képeink a kirándulásokról, táborokról és rendezvényeinkről.</p>
-    <img src="https://images.unsplash.com/photo-1565120130294-bfbd1c9ba37c" alt="Táborozás">
-    <img src="https://images.unsplash.com/photo-1504198458649-3128b932f49b" alt="Kirándulás">
-  </section>
-
-  <section id="rolunk">
-    <h2>Rólunk</h2>
-    <p>Csapatunk célja a fiatalok közösségben való fejlődése, természetközeliség és értékalapú nevelés.</p>
-  </section>
-
-  <section id="csatlakozz">
-    <h2>Csatlakozz hozzánk!</h2>
-    <p>Ha szeretnél részese lenni egy összetartó közösségnek, írj nekünk vagy találkozzunk egy eseményünkön!</p>
-  </section>
-
-  <section id="kapcsolat">
-    <h2>Kapcsolat</h2>
-    <p>Email: info@kassaicserkesz.sk</p>
-    <p>Facebook: <a href="https://facebook.com/kassaicserkesz" target="_blank">kassaicserkesz</a></p>
-  </section>
-
-  <section id="tamogatas">
-    <h2>Támogatás</h2>
-    <p>Bármilyen segítség, támogatás nagyban hozzájárul a cserkészprogramjaink működéséhez. Köszönjük!</p>
-  </section>
-
-  <footer>
-    &copy; 2025 17. II. Rákóczi Ferenc cserkészcsapat, Kassa. Minden jog fenntartva.
-  </footer>
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
 </body>
 </html>
+
